@@ -9,7 +9,10 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Catalog App'),
       ),
-      body: const Center(child: Text('Day 2 begins')),
+      body: const Center(
+        child: Text('Day 2 begins')
+      ),
+      drawer: const Drawer(),
     );
   }
 }
