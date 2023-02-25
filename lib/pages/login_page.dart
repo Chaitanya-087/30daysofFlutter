@@ -47,31 +47,37 @@ class _LoginPageState extends State<LoginPage> {
                         hintText: 'Enter password', labelText: 'Password'),
                   ),
                   const SizedBox(height: 12.0),
-                  InkWell(
-                    onTap: () async {
-                      setState(() {
-                        isChanged = true;
-                      });
-                      await Future.delayed(const Duration(seconds: 1), () {
-                        Navigator.pushNamed(context, MyRoutes.homeRoute);
-                      });
-                    },
-                    splashColor: Theme.of(context).primaryColorLight,
-                    child: AnimatedContainer(
-                      duration: const Duration(seconds: 1),
-                      width: 150,
-                      height: 35,
-                      decoration: BoxDecoration(
-                        shape: isChanged ? BoxShape.circle : BoxShape.rectangle,
-                        color: Theme.of(context).primaryColor,
-                        // borderRadius: BorderRadius.circular(5)
+                  Material(
+                    color: Colors.deepPurple,
+                    borderRadius: BorderRadius.circular(isChanged ? 50 : 4),
+                    child: InkWell(
+                      onTap: () async {
+                        setState(() {
+                          isChanged = true;
+                        });
+                        await Future.delayed(const Duration(seconds: 1));
+                        await Navigator.pushNamed(context, MyRoutes.homeRoute);
+                        setState(() {
+                          isChanged = false;
+                        });
+                      },
+                      splashColor: Colors.white.withOpacity(0.2),
+                      child: AnimatedContainer(
+                        duration: const Duration(seconds: 1),
+                        width: isChanged ? 50 : 150,
+                        height: 35,
+                        alignment: Alignment.center,
+                        child: isChanged
+                            ? const Icon(
+                                Icons.done,
+                                color: Colors.white,
+                              )
+                            : const Text('Login',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold)),
                       ),
-                      alignment: Alignment.center,
-                      child: const Text('Login',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold)),
                     ),
                   )
                   // ElevatedButton(
